@@ -6,7 +6,7 @@ Disciplina: Programação II e Banco de Dados
 
 ## Modelo Conceitual
 
-![modelo_conceitual](/readme/cbbd.png)
+![modelo_conceitual](/database/cbbd.png)
 
 ## Modelo Lógico
 
