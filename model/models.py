@@ -32,3 +32,4 @@ class BaseModel(peewee.Model):
         cursor.execute("SHOW DATABASES")
         databases = [database[0] for database in cursor]
         cursor.execute(f"CREATE DATABASE {name}") if name not in databases else False
+        cursor.execute(f"USE {name}")
