@@ -1,0 +1,10 @@
+Revisor: Nome, instituição, áreas de especialidade, endereço eletrônico (único), contato (endereço regular, telefone, fax)
+
+Autor: Nome, instituição
+
+Inscrito: Nome, instituição (opcional), endereço, telefone, email, categoria(socio, nao socio, estudante, estudante não socio)
+
+
+Os palestrantes dos minicursos e palestras podem estar na mesma entidade de autores? Se não, caso seja necessário criar uma tabela para esses cientistas, quais dados devemos usar?
+
+Pode ter mais de um relacionamento pra uma entidade?
