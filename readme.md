@@ -10,7 +10,7 @@ Disciplina: Programação II e Banco de Dados
 
 ## Modelo Lógico
 
-Em breve.
+![modelo_logico](/database/cbbd-logico.png)
 
 ## Modelo Físico
 
