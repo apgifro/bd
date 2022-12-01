@@ -23,3 +23,12 @@ Inscrito: Nome, instituição (opcional), endereço, telefone, email, categoria(
 Os palestrantes dos minicursos e palestras podem estar na mesma entidade de autores? Se não, caso seja necessário criar uma tabela para esses cientistas, quais dados devemos usar?
 
 Pode ter mais de um relacionamento pra uma entidade?
+
+
+
+
+A especialização "Autor" possui os dados nome e instituição. Esses dados são cadastrados no artigo. Ou seja, essa tabela substitui os dois campos multivalorados.
+
+Foi criado uma nova entidade para as palavras chaves, pois trata-se de um atributo multivalorado.
+
+Verificar atributo multivalorado em acontece e o relacionamento com local
