@@ -6,12 +6,12 @@ Disciplina: Programação II e Banco de Dados
 
 ## Modelo Conceitual
 
-![modelo_conceitual](/database/cbbd.png)
 ![modelo_conceitual](/database/conceitual/CBBD-F.png)
 
 ## Modelo Lógico
 
-![modelo_logico](/database/cbbd-logico.png)
+![modelo_logico](/database/anterior/cbbd-logico.png)
+![modelo_logico](/database/logico/CBBD-L-F.png)
 
 ## Modelo Físico
 
