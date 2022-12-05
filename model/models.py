@@ -47,6 +47,7 @@ class Artigo(Base):
 class ArtigoRevisor(Base):
     artigo = peewee.ForeignKeyField(model=Artigo, on_delete="CASCADE", backref="artigos")
     revisor = peewee.ForeignKeyField(model=Revisor, on_delete="CASCADE", backref="revisores")
+    nota = peewee.IntegerField()
 
 
 class PalavrasChave(Base):
