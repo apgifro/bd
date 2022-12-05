@@ -6,5 +6,15 @@
 
         MDTopAppBar:
             id: toolbar
-            title: "Main"
+            title: "Evento"
             right_action_items: [["magnify"]]
+
+        MDBoxLayout:
+            padding: 35
+            orientation: "vertical"
+
+            MDFloatingActionButtonSpeedDial:
+                data: root.data
+                root_button_anim: True
+                md_bg_color: app.theme_cls.primary_color
+                pos_hint: {"right": 0.99}

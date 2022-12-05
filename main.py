@@ -7,6 +7,11 @@ class MainScreen(Screen):
 
     Builder.load_file("view/main.kv")
 
+    data = {
+        'Artigo': ['book-open-page-variant-outline', "on_press", lambda x: print("Artigo")],
+        'Revisor': 'account',
+    }
+
 
 class NewScreen(Screen):
 
@@ -33,7 +38,7 @@ class ScreenManagement(ScreenManager):
         self.current = "edit"
 
 
-class CBBD(MDApp):
+class Evento(MDApp):
 
     def build(self):
         Builder.load_file("view/management.kv")
@@ -42,4 +47,4 @@ class CBBD(MDApp):
 
 
 if __name__ == '__main__':
-    CBBD().run()
+    Evento().run()
