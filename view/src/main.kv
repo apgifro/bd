@@ -1,7 +1,4 @@
 <Tab>
-    MDScrollView:
-        MDList:
-            id: list
 
 <MainScreen>:
     name: "main"
@@ -21,12 +18,13 @@
                 title: "Artigos"
 
 
-        MDBoxLayout:
-            padding: 35
-            orientation: "vertical"
 
-            MDFloatingActionButtonSpeedDial:
-                data: root.data
-                root_button_anim: True
-                md_bg_color: app.theme_cls.primary_color
-                pos_hint: {"right": 0.99}
+    MDBoxLayout:
+        padding: 35
+        orientation: "vertical"
+
+        MDFloatingActionButtonSpeedDial:
+            data: root.data
+            root_button_anim: True
+            md_bg_color: app.theme_cls.primary_color
+            pos_hint: {"right": 0.99}

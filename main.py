@@ -23,7 +23,7 @@ class Evento(MDApp):
         self.manager.add_widget(main)
         self.manager.add_widget(article)
         self.manager.add_widget(author)
-        self.manager.corrector()
+        self.manager.main()
 
         return self.manager
 

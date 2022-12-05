@@ -18,4 +18,8 @@ Em breve.
 
 ## Capturas de Tela
 
-Em breve.
+![main_screen](/base/telas/main.png)
+
+![corrector_screen](/base/telas/corrector.png)
+
+![corrector_screen](/base/telas/article.png)
