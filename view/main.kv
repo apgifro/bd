@@ -1,13 +1,25 @@
+<Tab>
+    MDScrollView:
+        MDList:
+            id: list
+
 <MainScreen>:
     name: "main"
     MDBoxLayout:
-        id: start_box
         orientation: "vertical"
 
         MDTopAppBar:
             id: toolbar
             title: "Evento"
             right_action_items: [["magnify"]]
+
+        MDTabs:
+            Tab:
+                title: "Revisores"
+
+            Tab:
+                title: "Artigos"
+
 
         MDBoxLayout:
             padding: 35

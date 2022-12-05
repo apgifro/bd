@@ -1,0 +1,12 @@
+<ArticleScreen>:
+    name: "article"
+    MDBoxLayout:
+        id: start_box
+        orientation: "vertical"
+
+        MDTopAppBar:
+            id: toolbar
+            title: "Artigo"
+            left_action_items: [["arrow-left", lambda result: root.manager.back()]]
+
+        MDBoxLayout:
