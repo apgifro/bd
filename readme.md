@@ -14,7 +14,9 @@ Disciplina: Programação II e Banco de Dados
 
 ## Modelo Físico
 
-Em breve.
+Clique [aqui](/base/fisico/sql) para ver o SQL.
+
+Criado pelo Peewee.
 
 ## Capturas de Tela
 
