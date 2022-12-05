@@ -1,101 +1,100 @@
-from peewee import Model, OperationalError, CharField, IntegerField, ForeignKeyField
+import peewee
 from playhouse.mysql_ext import MySQLConnectorDatabase
 
 
-class BaseModel(Model):
+config = {
+    "database": "cbbd",
+    "user": "root",
+    "password": "",
+    "host": "127.0.0.1"
+}
 
-    def __init__(self, *args, **kwargs):
-        try:
-            self.create_table()
-        except OperationalError as erro:
-            print(erro)
+db = MySQLConnectorDatabase(**config)
 
-        super().__init__(*args, **kwargs)
 
+class Base(peewee.Model):
     class Meta:
-        database = MySQLConnectorDatabase(
-            database='cbbd',
-            user='root',
-            password="",
-            port="3306",
-            charset="utf8mb4"
-        )
+        database = db
 
 
-class Revisor(BaseModel):
+class Revisor(Base):
 
-    nome = CharField(max_length=50, unique=True)
-    instituicao = CharField(max_length=50, unique=True)
+    nome = peewee.CharField(max_length=50, unique=True)
+    instituicao = peewee.CharField(max_length=50, unique=True)
 
-    rua = CharField(max_length=50, unique=True)
-    numero = IntegerField()
-    bairro = CharField(max_length=30, unique=True)
-    cidade = CharField(max_length=50, unique=True)
-    unidade_federativa = CharField(max_length=2, unique=True)
-
-
-class Especialidade(BaseModel):
-
-    nome = CharField(max_length=100, unique=True)
-    revisor = ForeignKeyField(model=Revisor, on_delete="CASCADE", backref="especialidades")
+    rua = peewee.CharField(max_length=50, unique=True)
+    numero = peewee.IntegerField()
+    bairro = peewee.CharField(max_length=30, unique=True)
+    cidade = peewee.CharField(max_length=50, unique=True)
+    unidade_federativa = peewee.CharField(max_length=2, unique=True)
 
 
-class Contato(BaseModel):
-
-    telefone = IntegerField()
-    fax = IntegerField()
-    revisor = ForeignKeyField(model=Revisor, on_delete="CASCADE", backref="especialidades")
+class Especialidade(Base):
+    nome = peewee.CharField(max_length=100, unique=True)
+    revisor = peewee.ForeignKeyField(model=Revisor, on_delete="CASCADE", backref="especialidades")
 
 
-class Artigo_Revisor(BaseModel):
+class Contato(Base):
+    telefone = peewee.IntegerField()
+    fax = peewee.IntegerField()
+    revisor = peewee.ForeignKeyField(model=Revisor, on_delete="CASCADE", backref="especialidades")
+
+
+class Artigo_Revisor(Base):
     pass
 
 
-class Artigo(BaseModel):
+class Artigo(Base):
+    titulo = peewee.CharField(max_length=100, unique=True)
+    nome = peewee.CharField(max_length=100, unique=True)
 
-    titulo = CharField(max_length=100, unique=True)
-    nome = CharField(max_length=100, unique=True)
 
-
-class Palavras_Chave(BaseModel):
+class Palavras_Chave(Base):
     pass
 
 
-class Participante(BaseModel):
+class Participante(Base):
     pass
 
 
-class Autor(BaseModel):
+class Autor(Base):
     pass
 
 
-class Inscrito(BaseModel):
+class Inscrito(Base):
     pass
 
 
-class Cientista(BaseModel):
+class Cientista(Base):
     pass
 
 
-class Local(BaseModel):
+class Local(Base):
     pass
 
 
-class Local_Atividade(BaseModel):
+class Local_Atividade(Base):
     pass
 
 
-class Atividade(BaseModel):
+class Atividade(Base):
     pass
 
 
-class Sessao_Tecnica(BaseModel):
+class Sessao_Tecnica(Base):
     pass
 
 
-class Palestra(BaseModel):
+class Palestra(Base):
     pass
 
 
-class Minicurso(BaseModel):
+class Minicurso(Base):
     pass
+
+
+db.create_tables([Revisor, Especialidade, Contato,
+          Artigo_Revisor, Artigo, Palavras_Chave,
+          Participante, Autor, Inscrito,
+          Cientista, Local, Local_Atividade,
+          Atividade, Sessao_Tecnica, Palestra, Minicurso])
