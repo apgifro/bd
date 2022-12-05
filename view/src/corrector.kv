@@ -1,0 +1,66 @@
+<CorrectorScreen>:
+    name: "author"
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            id: toolbar
+            title: "Revisor"
+            left_action_items: [["arrow-left", lambda result: root.manager.back()]]
+
+        MDBoxLayout:
+            orientation: "vertical"
+            MDList:
+                padding: 50
+                spacing: 5
+                MDTextField:
+                    id: name
+                    hint_text: "Nome"
+                    icon_right: "pencil"
+                    write_tab: False
+
+                MDTextField:
+                    id: domain
+                    hint_text: "Instituição"
+                    icon_right: "domain"
+                    write_tab: False
+
+                MDTextField:
+                    id: street
+                    hint_text: "Rua"
+                    icon_right: "map-marker"
+                    write_tab: False
+
+                MDTextField:
+                    id: number
+                    hint_text: "Número"
+                    icon_right: "map-marker"
+                    write_tab: False
+
+                MDTextField:
+                    id: district
+                    hint_text: "Bairro"
+                    icon_right: "map-marker"
+                    write_tab: False
+
+                MDTextField:
+                    id: city
+                    hint_text: "Cidade"
+                    icon_right: "map-marker"
+                    write_tab: False
+
+                MDTextField:
+                    id: uf
+                    hint_text: "UF"
+                    icon_right: "map-marker"
+                    write_tab: False
+
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: 30
+                spacing: 5
+                MDRaisedButton:
+                    text: "Salvar"
+                    pos_hint: {"right": 0.99}
+                    size_hint: 0.2, 0
+                    # on_release: root.get()
