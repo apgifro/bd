@@ -1,10 +1,10 @@
 from kivymd.app import MDApp
 
-from view.py.manager import ScreenManagement
+from view.python.manager import ScreenManagement
 
-from view.py.main import MainScreen
-from view.py.corrector import CorrectorScreen
-from view.py.article import ArticleScreen
+from view.python.main import MainScreen
+from view.python.corrector import CorrectorScreen
+from view.python.article import ArticleScreen
 
 
 class Evento(MDApp):
