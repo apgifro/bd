@@ -45,5 +45,3 @@ contato2 = models.Contato()
 contato2.telefone = 23454409485
 contato2.fax = 39994019484
 contato2.revisor = revisor2
-
-
