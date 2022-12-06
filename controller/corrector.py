@@ -34,7 +34,7 @@ class Corrector:
                 revisor.nome = nome
                 revisor.instituicao = instituicao
                 revisor.rua = rua
-                revisor.numero = numero
+                revisor.numero = int(numero)
                 revisor.bairro = bairro
                 revisor.cidade = cidade
                 revisor.unidade_federativa = unidade_federativa

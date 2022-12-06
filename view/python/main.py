@@ -15,8 +15,8 @@ class MainScreen(Screen):
 
     def __init__(self, **kw):
         self.data = {
-            'Revisor': ["account", "on_press", self.corrector_press],
-            'Artigo': ["book-open-page-variant-outline", "on_press", self.article_press]
+            'Revisor': ["account", "on_press", self._corrector_press],
+            'Artigo': ["book-open-page-variant-outline", "on_press", self._article_press]
         }
         Builder.load_file("view/src/main.kv")
         super().__init__(**kw)
@@ -26,9 +26,9 @@ class MainScreen(Screen):
         ids = self.manager.get_screen("main").ids
         self.list_corrector = ids.revisores.ids.list
         self.list_article = ids.artigos.ids.list
-        self.update_corrector()
+        self._update_corrector()
 
-    def update_corrector(self):
+    def _update_corrector(self):
         select = self.corrector.select()
         self.list_corrector.clear_widgets()
         items = []
@@ -46,8 +46,8 @@ class MainScreen(Screen):
         for item in items:
             self.list_corrector.add_widget(item)
 
-    def corrector_press(self, button):
+    def _corrector_press(self, button):
         self.manager.corrector()
 
-    def article_press(self, button):
+    def _article_press(self, button):
         self.manager.article()

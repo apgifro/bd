@@ -18,7 +18,7 @@ class CorrectorScreen(Screen):
         name = ids.name.text
         domain = ids.domain.text
         street = ids.street.text
-        number = ids.number.text
+        number = int(ids.number.text)
         district = ids.district.text
         city = ids.city.text
         uf = ids.uf.text
@@ -35,4 +35,5 @@ class CorrectorScreen(Screen):
             toast("Salvo")
         else:
             toast("Erro")
+
         self.manager.back()
