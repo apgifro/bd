@@ -33,6 +33,7 @@ class Especialidade(Base):
     nome = peewee.CharField(max_length=100)
     revisor = peewee.ForeignKeyField(model=Revisor, on_delete="CASCADE", backref="especialidades")
 
+#Inserir o relacionamento Autor_Artigo!
 
 class Contato(Base):
     telefone = peewee.IntegerField()
