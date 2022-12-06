@@ -7,6 +7,7 @@ config = {
     "user": "root",
     "password": "",
     "host": "127.0.0.1"
+    #"charset": "utf8mb4_general_ci" - Verificar
 }
 
 db = MySQLConnectorDatabase(**config)
