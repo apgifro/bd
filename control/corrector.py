@@ -2,8 +2,24 @@ import model.models as models
 
 
 class Corrector:
+
+    def select(self):
+        correctors = []
+        try:
+            select = models.Revisor.select()
+            for corrector in select:
+                correctors.append({"id": corrector.id,
+                                   "nome": corrector.nome,
+                                   "instituicao": corrector.instituicao,
+                                   "rua": corrector.rua,
+                                   "numero": corrector.numero,
+                                   "bairro": corrector.bairro,
+                                   "cidade": corrector.cidade})
+            return correctors
+        except Exception:
+            return False
     
-    def salvar(self,
+    def save(self,
                id=None,
                nome=None,
                instituicao=None,
@@ -33,15 +49,13 @@ class Corrector:
             revisor.save()
             return True
         
-        except Exception as e:
-            print(e)
+        except Exception:
             return False
         
-    def excluir(self, id):
+    def delete(self, id):
         try:
             revisor = models.Revisor.get_by_id(id)
             revisor.delete_instance()
             return True
-        except Exception as e:
-            print(e)
+        except Exception:
             return False

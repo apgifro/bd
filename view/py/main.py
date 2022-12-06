@@ -1,6 +1,7 @@
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.floatlayout import MDFloatLayout
+from kivymd.uix.list import OneLineListItem
 from kivymd.uix.tab import MDTabsBase
 
 
@@ -19,7 +20,12 @@ class MainScreen(Screen):
         super().__init__(**kw)
 
     def on_enter(self):
-        print(self.manager.get_screen("main").ids)
+        ids = self.manager.get_screen("main").ids
+        self.list_corrector = ids.revisores.ids.list
+        self.list_article = ids.artigos.ids.list
+        self.list_corrector.add_widget(OneLineListItem(text="Clique no + para adicionar um revisor"))
+        self.list_article.add_widget(OneLineListItem(text="Clique no + para adicionar um artigo"))
+
 
     def corrector(self, button):
         self.manager.corrector()
