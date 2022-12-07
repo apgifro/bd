@@ -1,7 +1,7 @@
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.floatlayout import MDFloatLayout
-from kivymd.uix.list import OneLineListItem
+from kivymd.uix.list import OneLineListItem, TwoLineListItem
 from kivymd.uix.tab import MDTabsBase
 
 from controller.corrector import Corrector
@@ -36,7 +36,8 @@ class MainScreen(Screen):
         if len(select):
             for selection in select:
                 name = selection["nome"]
-                item = OneLineListItem(text=name)
+                description = f"Especialista em {selection['especialidade']} no(a) {selection['instituicao']}."
+                item = TwoLineListItem(text=name, secondary_text=description)
                 items.append(item)
         else:
             empty = "Clique no + para adicionar um revisor"

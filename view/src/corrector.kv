@@ -8,59 +8,87 @@
             title: "Revisor"
             left_action_items: [["arrow-left", lambda result: root.manager.back()]]
 
-        MDBoxLayout:
+        MDScrollView:
             orientation: "vertical"
             MDList:
-                padding: 50
-                spacing: 5
-                MDTextField:
-                    id: name
-                    hint_text: "Nome"
-                    icon_right: "pencil"
-                    write_tab: False
+                spacing: 30
+                MDList:
+                    padding: 50
+                    MDTextField:
+                        id: name
+                        hint_text: "Nome"
+                        icon_right: "pencil"
+                        write_tab: False
 
-                MDTextField:
-                    id: domain
-                    hint_text: "Instituição"
-                    icon_right: "domain"
-                    write_tab: False
+                    MDTextField:
+                        id: domain
+                        hint_text: "Instituição"
+                        icon_right: "domain"
+                        write_tab: False
 
-                MDTextField:
-                    id: street
-                    hint_text: "Rua"
-                    icon_right: "map-marker"
-                    write_tab: False
+                    MDTextField:
+                        id: street
+                        hint_text: "Rua"
+                        icon_right: "map-marker"
+                        write_tab: False
 
-                MDTextField:
-                    id: number
-                    hint_text: "Número"
-                    icon_right: "map-marker"
-                    write_tab: False
+                    MDTextField:
+                        id: number
+                        hint_text: "Número"
+                        icon_right: "map-marker"
+                        write_tab: False
 
-                MDTextField:
-                    id: district
-                    hint_text: "Bairro"
-                    icon_right: "map-marker"
-                    write_tab: False
+                    MDTextField:
+                        id: district
+                        hint_text: "Bairro"
+                        icon_right: "map-marker"
+                        write_tab: False
 
-                MDTextField:
-                    id: city
-                    hint_text: "Cidade"
-                    icon_right: "map-marker"
-                    write_tab: False
+                    MDTextField:
+                        id: city
+                        hint_text: "Cidade"
+                        icon_right: "map-marker"
+                        write_tab: False
 
-                MDTextField:
-                    id: uf
-                    hint_text: "UF"
-                    icon_right: "map-marker"
-                    write_tab: False
+                    MDTextField:
+                        id: uf
+                        hint_text: "UF com dois caracteres"
+                        icon_right: "map-marker"
+                        write_tab: False
 
-            MDBoxLayout:
-                orientation: "vertical"
-                padding: 30
-                spacing: 5
-                MDRaisedButton:
-                    text: "Salvar"
-                    pos_hint: {"right": 0.99}
-                    size_hint: 0.2, 0
-                    on_release: root.save()
+                    MDTextField:
+                        id: expertise
+                        hint_text: "Especialidade"
+                        icon_right: "certificate"
+                        write_tab: False
+
+                    MDTextField:
+                        id: cellphone
+                        hint_text: "Telefone com 9 dígitos"
+                        icon_right: "phone"
+                        write_tab: False
+
+                    MDTextField:
+                        id: fax
+                        hint_text: "Fax com 9 dígitos"
+                        icon_right: "phone"
+                        write_tab: False
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        MDRaisedButton:
+                            text: "Salvar"
+                            pos_hint: {"right": 0.97}
+                            size_hint: 0.2, 0
+                            on_release: root.save()
+
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        MDRaisedButton:
+                            text: "Excluir"
+                            pos_hint: {"x": 0.03}
+                            md_bg_color: "red"
+                            size_hint: 0.2, 0
+                            on_release: root.save()

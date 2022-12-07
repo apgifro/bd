@@ -15,25 +15,44 @@ class CorrectorScreen(Screen):
     def save(self):
         ids = self.manager.get_screen("corrector").ids
 
-        name = ids.name.text
-        domain = ids.domain.text
-        street = ids.street.text
-        number = int(ids.number.text)
-        district = ids.district.text
-        city = ids.city.text
-        uf = ids.uf.text
+        try:
+            name = ids.name.text
+            domain = ids.domain.text
+            street = ids.street.text
+            number = int(ids.number.text)
+            district = ids.district.text
+            city = ids.city.text
+            uf = ids.uf.text
+            expertise = ids.expertise.text
+            cellphone = int(ids.cellphone.text)
+            fax = int(ids.fax.text)
 
-        save = self.corrector.save(nome=name,
-                                   instituicao=domain,
-                                   rua=street,
-                                   numero=number,
-                                   bairro=district,
-                                   cidade=city,
-                                   unidade_federativa=uf)
+            if len(uf) > 2:
+                raise
+            if len(str(cellphone)) > 9 or \
+                    len(str(fax)) > 9 or \
+                    len(str(street)) > 4:
+                raise
 
-        if save:
-            toast("Salvo")
+        except Exception as e:
+            print(e)
+            toast("Digite corretamente")
+
         else:
-            toast("Erro")
+            save = self.corrector.save(nome=name,
+                                       instituicao=domain,
+                                       rua=street,
+                                       numero=number,
+                                       bairro=district,
+                                       cidade=city,
+                                       unidade_federativa=uf,
+                                       especialidade=expertise,
+                                       telefone=cellphone,
+                                       fax=fax)
 
-        self.manager.back()
+            if save:
+                toast("Salvo")
+            else:
+                toast("Erro")
+
+            self.manager.back()
