@@ -33,7 +33,6 @@ class Especialidade(Base):
     nome = peewee.CharField(max_length=100)
     revisor = peewee.ForeignKeyField(model=Revisor, on_delete="CASCADE", backref="especialidades")
 
-#Inserir o relacionamento Autor_Artigo!
 
 class Contato(Base):
     telefone = peewee.IntegerField()
@@ -50,6 +49,12 @@ class ArtigoRevisor(Base):
     artigo = peewee.ForeignKeyField(model=Artigo, on_delete="CASCADE", backref="artigos")
     revisor = peewee.ForeignKeyField(model=Revisor, on_delete="CASCADE", backref="revisores")
     nota = peewee.IntegerField()
+
+
+class ArtigoAutor(Base):
+    artigo = peewee.ForeignKeyField(model=Artigo, on_delete="CASCADE", backref="artigos")
+    autor = peewee.ForeignKeyField(model=Autor, on_delete="CASCADE", backref="autores")
+    #Inserir o relacionamento Autor_Artigo!
 
 
 class PalavrasChave(Base):
