@@ -46,6 +46,7 @@ class CorrectorScreen(Screen):
 
     def back(self):
         if self.update:
+            self.update = False
             self.update_id = -1
         self.manager.back()
 
