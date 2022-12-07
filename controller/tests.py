@@ -1,6 +1,8 @@
 from corrector import Corrector
 from article import Article
+from autor import Autor
 
+"""
 # Corrector
 print("Corrector")
 
@@ -48,3 +50,10 @@ print("Update:", update)
 
 delete = control.excluir(1)
 print("Delete:", delete)
+"""
+
+control = Autor()
+
+save = control.salvar(email="emailteste@ifro.edu.br",
+                      nome='João Paulo', instituicao='CBBD')
+print("Save:", save)

@@ -51,12 +51,6 @@ class ArtigoRevisor(Base):
     nota = peewee.IntegerField()
 
 
-class ArtigoAutor(Base):
-    artigo = peewee.ForeignKeyField(model=Artigo, on_delete="CASCADE", backref="artigos")
-    autor = peewee.ForeignKeyField(model=Autor, on_delete="CASCADE", backref="autores")
-    #Inserir o relacionamento Autor_Artigo!
-
-
 class PalavrasChave(Base):
     artigo = peewee.ForeignKeyField(model=Artigo, on_delete="CASCADE", backref="artigos")
     palavra_chave = peewee.CharField(max_length=30)
@@ -71,6 +65,11 @@ class Autor(Base):
     participante = peewee.ForeignKeyField(model=Participante, on_delete="CASCADE", backref="participantes")
     email = peewee.CharField(max_length=50)
     artigo = peewee.ForeignKeyField(model=Artigo, on_delete="CASCADE", backref="artigos")
+
+
+class ArtigoAutor(Base):
+    artigo = peewee.ForeignKeyField(model=Artigo, on_delete="CASCADE", backref="artigos")
+    autor = peewee.ForeignKeyField(model=Autor, on_delete="CASCADE", backref="autores")
 
 
 class Inscrito(Base):
@@ -130,6 +129,6 @@ class Minicurso(Base):
 
 db.create_tables([Revisor, Especialidade, Contato,
           ArtigoRevisor, Artigo, PalavrasChave,
-          Participante, Autor, Inscrito,
+          Participante, Autor, ArtigoAutor, Inscrito,
           Cientista, Local, LocalAtividade,
           Atividade, SessaoTecnica, Palestra, Minicurso])
