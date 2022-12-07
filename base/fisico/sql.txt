@@ -1,0 +1,497 @@
+-- MySQL dump 10.13  Distrib 8.0.31, for macos12.6 (arm64)
+--
+-- Host: localhost    Database: cbbd
+-- ------------------------------------------------------
+-- Server version	8.0.31
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `artigo`
+--
+
+DROP TABLE IF EXISTS `artigo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `artigo` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(100) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `artigo_titulo` (`titulo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `artigo`
+--
+
+LOCK TABLES `artigo` WRITE;
+/*!40000 ALTER TABLE `artigo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `artigo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `artigoautor`
+--
+
+DROP TABLE IF EXISTS `artigoautor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `artigoautor` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `artigo_id` int NOT NULL,
+  `autor_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `artigoautor_artigo_id` (`artigo_id`),
+  KEY `artigoautor_autor_id` (`autor_id`),
+  CONSTRAINT `artigoautor_ibfk_1` FOREIGN KEY (`artigo_id`) REFERENCES `artigo` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `artigoautor_ibfk_2` FOREIGN KEY (`autor_id`) REFERENCES `autor` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `artigoautor`
+--
+
+LOCK TABLES `artigoautor` WRITE;
+/*!40000 ALTER TABLE `artigoautor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `artigoautor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `artigorevisor`
+--
+
+DROP TABLE IF EXISTS `artigorevisor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `artigorevisor` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `artigo_id` int NOT NULL,
+  `revisor_id` int NOT NULL,
+  `nota` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `artigorevisor_artigo_id` (`artigo_id`),
+  KEY `artigorevisor_revisor_id` (`revisor_id`),
+  CONSTRAINT `artigorevisor_ibfk_1` FOREIGN KEY (`artigo_id`) REFERENCES `artigo` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `artigorevisor_ibfk_2` FOREIGN KEY (`revisor_id`) REFERENCES `revisor` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `artigorevisor`
+--
+
+LOCK TABLES `artigorevisor` WRITE;
+/*!40000 ALTER TABLE `artigorevisor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `artigorevisor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `atividade`
+--
+
+DROP TABLE IF EXISTS `atividade`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `atividade` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `data` date NOT NULL,
+  `horario` time NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `atividade`
+--
+
+LOCK TABLES `atividade` WRITE;
+/*!40000 ALTER TABLE `atividade` DISABLE KEYS */;
+/*!40000 ALTER TABLE `atividade` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `autor`
+--
+
+DROP TABLE IF EXISTS `autor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `autor` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `participante_id` int NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `artigo_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `autor_participante_id` (`participante_id`),
+  KEY `autor_artigo_id` (`artigo_id`),
+  CONSTRAINT `autor_ibfk_1` FOREIGN KEY (`participante_id`) REFERENCES `participante` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `autor_ibfk_2` FOREIGN KEY (`artigo_id`) REFERENCES `artigo` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `autor`
+--
+
+LOCK TABLES `autor` WRITE;
+/*!40000 ALTER TABLE `autor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `autor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cientista`
+--
+
+DROP TABLE IF EXISTS `cientista`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cientista` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `participante_id` int NOT NULL,
+  `codigo_voo` varchar(20) NOT NULL,
+  `companhia_voo` varchar(30) NOT NULL,
+  `data_voo_ida` date NOT NULL,
+  `data_voo_volta` date NOT NULL,
+  `hora_voo_ida` time NOT NULL,
+  `hora_voo_volta` time NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cientista_participante_id` (`participante_id`),
+  CONSTRAINT `cientista_ibfk_1` FOREIGN KEY (`participante_id`) REFERENCES `participante` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cientista`
+--
+
+LOCK TABLES `cientista` WRITE;
+/*!40000 ALTER TABLE `cientista` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cientista` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `contato`
+--
+
+DROP TABLE IF EXISTS `contato`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `contato` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `telefone` int NOT NULL,
+  `fax` int NOT NULL,
+  `revisor_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `contato_revisor_id` (`revisor_id`),
+  CONSTRAINT `contato_ibfk_1` FOREIGN KEY (`revisor_id`) REFERENCES `revisor` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contato`
+--
+
+LOCK TABLES `contato` WRITE;
+/*!40000 ALTER TABLE `contato` DISABLE KEYS */;
+/*!40000 ALTER TABLE `contato` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `especialidade`
+--
+
+DROP TABLE IF EXISTS `especialidade`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `especialidade` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `revisor_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `especialidade_revisor_id` (`revisor_id`),
+  CONSTRAINT `especialidade_ibfk_1` FOREIGN KEY (`revisor_id`) REFERENCES `revisor` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `especialidade`
+--
+
+LOCK TABLES `especialidade` WRITE;
+/*!40000 ALTER TABLE `especialidade` DISABLE KEYS */;
+/*!40000 ALTER TABLE `especialidade` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `inscrito`
+--
+
+DROP TABLE IF EXISTS `inscrito`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `inscrito` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `participante_id` int NOT NULL,
+  `categoria` varchar(100) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `endereco` varchar(150) NOT NULL,
+  `telefone` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `inscrito_participante_id` (`participante_id`),
+  CONSTRAINT `inscrito_ibfk_1` FOREIGN KEY (`participante_id`) REFERENCES `participante` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `inscrito`
+--
+
+LOCK TABLES `inscrito` WRITE;
+/*!40000 ALTER TABLE `inscrito` DISABLE KEYS */;
+/*!40000 ALTER TABLE `inscrito` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `local`
+--
+
+DROP TABLE IF EXISTS `local`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `local` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(40) NOT NULL,
+  `capacidade` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `local`
+--
+
+LOCK TABLES `local` WRITE;
+/*!40000 ALTER TABLE `local` DISABLE KEYS */;
+/*!40000 ALTER TABLE `local` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `localatividade`
+--
+
+DROP TABLE IF EXISTS `localatividade`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `localatividade` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `local_id` int NOT NULL,
+  `atividade_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `localatividade_local_id` (`local_id`),
+  KEY `localatividade_atividade_id` (`atividade_id`),
+  CONSTRAINT `localatividade_ibfk_1` FOREIGN KEY (`local_id`) REFERENCES `local` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `localatividade_ibfk_2` FOREIGN KEY (`atividade_id`) REFERENCES `atividade` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `localatividade`
+--
+
+LOCK TABLES `localatividade` WRITE;
+/*!40000 ALTER TABLE `localatividade` DISABLE KEYS */;
+/*!40000 ALTER TABLE `localatividade` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `minicurso`
+--
+
+DROP TABLE IF EXISTS `minicurso`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `minicurso` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `atividade_id` int NOT NULL,
+  `titulo` varchar(50) NOT NULL,
+  `descricao` varchar(300) NOT NULL,
+  `taxa` float NOT NULL,
+  `vagas_disponiveis` int NOT NULL,
+  `participante_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `minicurso_atividade_id` (`atividade_id`),
+  KEY `minicurso_participante_id` (`participante_id`),
+  CONSTRAINT `minicurso_ibfk_1` FOREIGN KEY (`atividade_id`) REFERENCES `atividade` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `minicurso_ibfk_2` FOREIGN KEY (`participante_id`) REFERENCES `participante` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `minicurso`
+--
+
+LOCK TABLES `minicurso` WRITE;
+/*!40000 ALTER TABLE `minicurso` DISABLE KEYS */;
+/*!40000 ALTER TABLE `minicurso` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `palavraschave`
+--
+
+DROP TABLE IF EXISTS `palavraschave`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `palavraschave` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `artigo_id` int NOT NULL,
+  `palavra_chave` varchar(30) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `palavraschave_artigo_id` (`artigo_id`),
+  CONSTRAINT `palavraschave_ibfk_1` FOREIGN KEY (`artigo_id`) REFERENCES `artigo` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `palavraschave`
+--
+
+LOCK TABLES `palavraschave` WRITE;
+/*!40000 ALTER TABLE `palavraschave` DISABLE KEYS */;
+/*!40000 ALTER TABLE `palavraschave` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `palestra`
+--
+
+DROP TABLE IF EXISTS `palestra`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `palestra` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `atividade_id` int NOT NULL,
+  `titulo` varchar(50) NOT NULL,
+  `participante_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `palestra_atividade_id` (`atividade_id`),
+  KEY `palestra_participante_id` (`participante_id`),
+  CONSTRAINT `palestra_ibfk_1` FOREIGN KEY (`atividade_id`) REFERENCES `atividade` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `palestra_ibfk_2` FOREIGN KEY (`participante_id`) REFERENCES `participante` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `palestra`
+--
+
+LOCK TABLES `palestra` WRITE;
+/*!40000 ALTER TABLE `palestra` DISABLE KEYS */;
+/*!40000 ALTER TABLE `palestra` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `participante`
+--
+
+DROP TABLE IF EXISTS `participante`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `participante` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  `instituicao` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `participante`
+--
+
+LOCK TABLES `participante` WRITE;
+/*!40000 ALTER TABLE `participante` DISABLE KEYS */;
+/*!40000 ALTER TABLE `participante` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `revisor`
+--
+
+DROP TABLE IF EXISTS `revisor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `revisor` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  `instituicao` varchar(50) NOT NULL,
+  `rua` varchar(50) NOT NULL,
+  `numero` int NOT NULL,
+  `bairro` varchar(30) NOT NULL,
+  `cidade` varchar(50) NOT NULL,
+  `unidade_federativa` varchar(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `revisor`
+--
+
+LOCK TABLES `revisor` WRITE;
+/*!40000 ALTER TABLE `revisor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `revisor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sessaotecnica`
+--
+
+DROP TABLE IF EXISTS `sessaotecnica`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sessaotecnica` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `atividade_id` int NOT NULL,
+  `titulo` varchar(50) NOT NULL,
+  `descricao` varchar(300) NOT NULL,
+  `artigo_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sessaotecnica_atividade_id` (`atividade_id`),
+  KEY `sessaotecnica_artigo_id` (`artigo_id`),
+  CONSTRAINT `sessaotecnica_ibfk_1` FOREIGN KEY (`atividade_id`) REFERENCES `atividade` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `sessaotecnica_ibfk_2` FOREIGN KEY (`artigo_id`) REFERENCES `artigo` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sessaotecnica`
+--
+
+LOCK TABLES `sessaotecnica` WRITE;
+/*!40000 ALTER TABLE `sessaotecnica` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sessaotecnica` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-12-07 16:58:50

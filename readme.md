@@ -1,8 +1,8 @@
 # CBBD
 
-Discentes: Alexandre e Jacob
+Discentes: Alexandre e Jacob.
 
-Disciplina: Programação II e Banco de Dados
+Disciplina: Programação II e Banco de Dados.
 
 ## Modelo Conceitual
 
@@ -14,7 +14,7 @@ Disciplina: Programação II e Banco de Dados
 
 ## Modelo Físico
 
-Clique [aqui](/base/fisico/sql) para ver o SQL.
+Clique [aqui](/base/fisico/sql.txt) para ver o SQL.
 
 Criado pelo Peewee.
 
@@ -23,5 +23,3 @@ Criado pelo Peewee.
 ![main_screen](/base/telas/main.png)
 
 ![corrector_screen](/base/telas/corrector.png)
-
-![corrector_screen](/base/telas/article.png)
