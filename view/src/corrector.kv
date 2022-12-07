@@ -64,13 +64,13 @@
 
                     MDTextField:
                         id: cellphone
-                        hint_text: "Telefone com 9 dígitos"
+                        hint_text: "Telefone com 9 dígitos e apenas números"
                         icon_right: "phone"
                         write_tab: False
 
                     MDTextField:
                         id: fax
-                        hint_text: "Fax com 9 dígitos"
+                        hint_text: "Fax com 9 dígitos e apenas números"
                         icon_right: "phone"
                         write_tab: False
 
@@ -86,9 +86,4 @@
 
                     MDBoxLayout:
                         orientation: "vertical"
-                        MDRaisedButton:
-                            text: "Excluir"
-                            pos_hint: {"x": 0.03}
-                            md_bg_color: "red"
-                            size_hint: 0.2, 0
-                            on_release: root.save()
+                        id: delete_box

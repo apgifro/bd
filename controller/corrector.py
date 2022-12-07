@@ -8,17 +8,41 @@ class Corrector:
         try:
             select = models.Revisor.select()
             for corrector in select:
-                correctors.append({"id": corrector.id,
-                                   "nome": corrector.nome,
-                                   "instituicao": corrector.instituicao,
-                                   "rua": corrector.rua,
-                                   "numero": corrector.numero,
-                                   "bairro": corrector.bairro,
-                                   "cidade": corrector.cidade,
-                                   "especialidade": models.Especialidade.get_by_id(corrector.id).nome,
-                                   "telefone": models.Contato.get_by_id(corrector.id).telefone,
-                                   "fax": models.Contato.get_by_id(corrector.id).fax})
+                data = {"id": corrector.id,
+                        "nome": corrector.nome,
+                        "instituicao": corrector.instituicao,
+                        "rua": corrector.rua,
+                        "numero": corrector.numero,
+                        "bairro": corrector.bairro,
+                        "cidade": corrector.cidade,
+                        "unidade_federativa": corrector.unidade_federativa,
+                        "especialidade": models.Especialidade.get_by_id(corrector.id).nome,
+                        "telefone": models.Contato.get_by_id(corrector.id).telefone,
+                        "fax": models.Contato.get_by_id(corrector.id).fax}
+                correctors.append(data)
             return correctors
+        except Exception as e:
+            print(e)
+            return False
+
+    def select_id(self, id):
+        try:
+            corrector = models.Revisor.get_by_id(id)
+            expertise = models.Especialidade.get_by_id(id)
+            contact = models.Contato.get_by_id(id)
+
+            data = {"id": corrector.id,
+                    "nome": corrector.nome,
+                    "instituicao": corrector.instituicao,
+                    "rua": corrector.rua,
+                    "numero": corrector.numero,
+                    "bairro": corrector.bairro,
+                    "cidade": corrector.cidade,
+                    "unidade_federativa": corrector.unidade_federativa,
+                    "especialidade": expertise.nome,
+                    "telefone": contact.telefone,
+                    "fax": contact.fax}
+            return data
         except Exception as e:
             print(e)
             return False
@@ -32,7 +56,7 @@ class Corrector:
              bairro=None,
              cidade=None,
              unidade_federativa=None,
-             especialidade=None,
+             nome_especialidade=None,
              telefone=None,
              fax=None):
         try:
@@ -47,9 +71,9 @@ class Corrector:
                 revisor.unidade_federativa = unidade_federativa
 
                 especialidade = models.Especialidade.get_by_id(id)
-                especialidade.nome = nome
+                especialidade.nome = nome_especialidade
 
-                contato = models.Especialidade.get_by_id(id)
+                contato = models.Contato.get_by_id(id)
                 contato.telefone = telefone
                 contato.fax = fax
             else:
@@ -60,7 +84,7 @@ class Corrector:
                                          bairro=bairro,
                                          cidade=cidade,
                                          unidade_federativa=unidade_federativa)
-                especialidade = models.Especialidade(nome=especialidade, revisor=revisor)
+                especialidade = models.Especialidade(nome=nome_especialidade, revisor=revisor)
                 contato = models.Contato(telefone=telefone, fax=fax, revisor=revisor)
             revisor.save()
             especialidade.save()

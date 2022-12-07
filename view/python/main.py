@@ -37,15 +37,24 @@ class MainScreen(Screen):
             for selection in select:
                 name = selection["nome"]
                 description = f"Especialista em {selection['especialidade']} no(a) {selection['instituicao']}."
-                item = TwoLineListItem(text=name, secondary_text=description)
+                item = TwoLineListItem(text=name,
+                                       secondary_text=description,
+                                       id=str(selection["id"]),
+                                       on_release=self._click_corrector)
                 items.append(item)
         else:
-            empty = "Clique no + para adicionar um revisor"
+            empty = "Adicione o primeiro revisor."
             item = OneLineListItem(text=empty)
             items.append(item)
 
         for item in items:
             self.list_corrector.add_widget(item)
+
+    def _click_corrector(self, item):
+        self.manager.corrector()
+        screen = self.manager.get_screen("corrector")
+        screen.update = True
+        screen.update_id = item.id
 
     def _corrector_press(self, button):
         self.manager.corrector()
