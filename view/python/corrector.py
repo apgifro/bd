@@ -30,6 +30,7 @@ class CorrectorScreen(Screen):
             )
 
             select = self.corrector.select_id(self.update_id)
+            self.select = self.corrector.select_id(self.update_id)
 
             if select:
                 self.ids.name.text = select["nome"]
@@ -42,6 +43,11 @@ class CorrectorScreen(Screen):
                 self.ids.expertise.text = select["especialidade"]
                 self.ids.cellphone.text = str(select["telefone"])
                 self.ids.fax.text = str(select["fax"])
+
+    def back(self):
+        if self.update:
+            self.update_id = -1
+        self.manager.back()
 
     def save(self):
         try:
@@ -66,39 +72,29 @@ class CorrectorScreen(Screen):
             toast("Digite corretamente")
 
         else:
+            data = {"nome": name,
+                    "instituicao": domain,
+                    "rua": street,
+                    "numero": number,
+                    "bairro": district,
+                    "cidade": city,
+                    "unidade_federativa": uf,
+                    "nome_especialidade": expertise,
+                    "telefone": cellphone,
+                    "fax": fax}
+
             if self.update:
-                save = self.corrector.save(id=self.update_id,
-                                           nome=name,
-                                           instituicao=domain,
-                                           rua=street,
-                                           numero=number,
-                                           bairro=district,
-                                           cidade=city,
-                                           unidade_federativa=uf,
-                                           nome_especialidade=expertise,
-                                           telefone=cellphone,
-                                           fax=fax)
+                save = self.corrector.save(id=self.update_id, **data)
                 self.update = False
                 self.update_id = -1
             else:
-                save = self.corrector.save(nome=name,
-                                           instituicao=domain,
-                                           rua=street,
-                                           numero=number,
-                                           bairro=district,
-                                           cidade=city,
-                                           unidade_federativa=uf,
-                                           nome_especialidade=expertise,
-                                           telefone=cellphone,
-                                           fax=fax)
+                save = self.corrector.save(**data)
 
             if save:
                 toast("Salvo")
                 self.manager.back()
             else:
                 toast("Erro")
-
-
 
     def delete(self, button):
         delete = self.corrector.delete(self.update_id)

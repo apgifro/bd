@@ -33,7 +33,7 @@ class MainScreen(Screen):
         self.list_corrector.clear_widgets()
         items = []
 
-        if len(select):
+        if select:
             for selection in select:
                 name = selection["nome"]
                 description = f"Especialista em {selection['especialidade']} no(a) {selection['instituicao']}."

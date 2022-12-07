@@ -98,12 +98,7 @@ class Corrector:
         try:
             revisor = models.Revisor.get_by_id(id)
             revisor.delete_instance()
-
-            especialidade = models.Especialidade.get_by_id(id)
-            especialidade.delete_instance()
-
-            contato = models.Contato.get_by_id(id)
-            contato.delete_instance()
             return True
-        except Exception:
+        except Exception as e:
+            print(e)
             return False
