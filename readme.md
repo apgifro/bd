@@ -20,9 +20,16 @@ Criado pelo Peewee.
 
 ## Capturas de Tela
 
-![main_screen](/base/telas/main.png)
+![screen](/base/telas/1.png)
 
-![corrector_screen](/base/telas/corrector.png)
+![screen](/base/telas/2.png)
+
+![screen](/base/telas/3.png)
+
+![screen](/base/telas/4.png)
+
+![screen](/base/telas/5.png)
+
 
 ## Montar o ambiente
 
@@ -38,8 +45,19 @@ https://github.com/apgifro/bd
 ```
 pip install kivy kivymd peewee mysql-connector-python
 ```
-Alternadamente, a biblioteca seguinte poderá ser necessária:
+Alternativamente, a biblioteca seguinte poderá ser necessária:
 ```
 pip install mysql-connector
 ```
 
+7. Instale e inicie o MySQL 
+8. Faça login no banco de dados
+```
+mysql -u root
+```
+9. Crie uma base de dados
+```
+create database cbbd;
+```
+
+10. Execute o arquivo `main.py` no diretório raiz

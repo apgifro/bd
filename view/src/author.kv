@@ -1,0 +1,47 @@
+<AuthorScreen>:
+    name: "author"
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            id: toolbar
+            title: "Autor"
+            left_action_items: [["arrow-left", lambda result: root.back()]]
+
+        MDScrollView:
+            orientation: "vertical"
+            MDList:
+                spacing: 30
+                MDList:
+                    padding: 50
+                    MDTextField:
+                        id: name
+                        hint_text: "Nome"
+                        icon_right: "pencil"
+                        write_tab: False
+
+                    MDTextField:
+                        id: domain
+                        hint_text: "Instituição"
+                        icon_right: "domain"
+                        write_tab: False
+
+                    MDTextField:
+                        id: email
+                        hint_text: "E-mail"
+                        icon_right: "at"
+                        write_tab: False
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        MDRaisedButton:
+                            text: "Salvar"
+                            pos_hint: {"right": 0.97}
+                            size_hint: 0.2, 0
+                            on_release: root.save()
+
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        id: delete_box

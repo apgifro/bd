@@ -1,7 +1,7 @@
 import model.models as models
 
 
-class Autor:
+class Author:
         
     def select(self):
         autores = []
@@ -37,16 +37,17 @@ class Autor:
     def save(self, id=None, email=None, nome=None, instituicao=None):
         try:
             if id:
-                autor = models.Autor.get_by_id(id)
-                autor.email = email
                 participante = models.Participante.get_by_id(id)
                 participante.nome = nome
                 participante.instituicao = instituicao
+
+                autor = models.Autor.get_by_id(id)
+                autor.email = email
             else:
-                autor = models.Autor(email=email)
                 participante = models.Participante(nome=nome, instituicao=instituicao)
-            autor.save()
+                autor = models.Autor(email=email, participante=participante, artigo=1)
             participante.save()
+            autor.save()
             return True
         except Exception as e:
             print(e)

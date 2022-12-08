@@ -45,9 +45,8 @@ class CorrectorScreen(Screen):
                 self.ids.fax.text = str(select["fax"])
 
     def back(self):
-        if self.update:
-            self.update = False
-            self.update_id = -1
+        self.update = False
+        self.update_id = -1
         self.manager.back()
 
     def save(self):
@@ -86,14 +85,12 @@ class CorrectorScreen(Screen):
 
             if self.update:
                 save = self.corrector.save(id=self.update_id, **data)
-                self.update = False
-                self.update_id = -1
             else:
                 save = self.corrector.save(**data)
 
             if save:
                 toast("Salvo")
-                self.manager.back()
+                self.back()
             else:
                 toast("Erro")
 
@@ -101,6 +98,6 @@ class CorrectorScreen(Screen):
         delete = self.corrector.delete(self.update_id)
         if delete:
             toast("Excluído")
-            self.manager.back()
+            self.back()
         else:
             toast("Erro")

@@ -9,11 +9,11 @@ class ScreenManagement(ScreenManager):
     def main(self):
         self.current = "main"
 
-    def article(self):
-        self.current = "article"
-
     def corrector(self):
         self.current = "corrector"
+
+    def author(self):
+        self.current = "author"
 
     def back(self):
         self.transition = SlideTransition(direction="right")

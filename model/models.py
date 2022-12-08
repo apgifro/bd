@@ -7,7 +7,6 @@ config = {
     "user": "root",
     "password": "",
     "host": "127.0.0.1"
-    #"charset": "utf8mb4_general_ci" - Verificar
 }
 
 db = MySQLConnectorDatabase(**config)
@@ -61,10 +60,12 @@ class Participante(Base):
     instituicao = peewee.CharField(max_length=100)
 
 
+should = False
 class Autor(Base):
-    participante = peewee.ForeignKeyField(model=Participante, on_delete="CASCADE", backref="participantes")
     email = peewee.CharField(max_length=50)
-    artigo = peewee.ForeignKeyField(model=Artigo, on_delete="CASCADE", backref="artigos")
+    participante = peewee.ForeignKeyField(model=Participante, on_delete="CASCADE", backref="participantes")
+    if should:
+        artigo = peewee.ForeignKeyField(model=Artigo, on_delete="CASCADE", backref="artigos")
 
 
 class ArtigoAutor(Base):

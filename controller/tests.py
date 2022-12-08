@@ -1,6 +1,6 @@
 from corrector import Corrector
 from article import Article
-from autor import Autor
+from author import Autor
 
 """
 # Corrector
