@@ -38,3 +38,8 @@ https://github.com/apgifro/bd
 ```
 pip install kivy kivymd peewee mysql-connector mysql-connector-python
 ```
+Alternadamente, a biblioteca seguinte poderá ser necessária:
+```
+pip install mysql-connector
+```
+
