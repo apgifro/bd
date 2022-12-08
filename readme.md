@@ -36,7 +36,7 @@ https://github.com/apgifro/bd
 5. Configure o interpretador e _venv_
 6. Instale as bibliotecas
 ```
-pip install kivy kivymd peewee mysql-connector mysql-connector-python
+pip install kivy kivymd peewee mysql-connector-python
 ```
 Alternadamente, a biblioteca seguinte poderá ser necessária:
 ```
