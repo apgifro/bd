@@ -51,7 +51,11 @@ class Article:
                 artigo_revisor.nota = nota
             else:
                 artigo = models.Artigo(titulo=titulo, email=email)
+                palavrasChave = models.PalavrasChave(palavras_chave=palavras_chave)
+                artigo_revisor = models.ArtigoRevisor(nota=nota)
             artigo.save()
+            palavrasChave.save()
+            artigo_revisor.save()
             return True
         
         except Exception as e:
