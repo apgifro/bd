@@ -37,12 +37,18 @@ class Article:
             return False
     
     
-    def save(self, id=None, titulo=None, email=None):
+    def save(self, id=None, titulo=None, email=None, palavras_chave=None, nota=None):
         try:
             if id:
                 artigo = models.Artigo.get_by_id(id)
                 artigo.titulo = titulo
                 artigo.email = email
+                
+                palavrasChave = models.PalavrasChave.get_by_id(id)
+                palavrasChave.palavra_chave = palavras_chave
+                
+                artigo_revisor = models.ArtigoRevisor.get_by_id(id)
+                artigo_revisor.nota = nota
             else:
                 artigo = models.Artigo(titulo=titulo, email=email)
             artigo.save()
