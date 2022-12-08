@@ -23,3 +23,18 @@ Criado pelo Peewee.
 ![main_screen](/base/telas/main.png)
 
 ![corrector_screen](/base/telas/corrector.png)
+
+## Montar o ambiente
+
+1. Abra o PyCharm
+2. Clique em _Get from VCS_
+3. Adicione o link do projeto do GitHub
+```
+https://github.com/apgifro/bd
+```
+4. Clone o projeto
+5. Configure o interpretador e _venv_
+6. Instale as bibliotecas
+```
+pip install kivy kivymd peewee mysql-connector mysql-connector-python
+```
